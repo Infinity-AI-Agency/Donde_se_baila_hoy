@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Dónde se baila hoy? — En Vallarta</title>
+<style>
+  :root{
+    --noche: #12151c;
+    --noche-2: #1b202b;
+    --oro: #e0a940;
+    --coral: #ff5f5f;
+    --texto: #f3ede3;
+    --texto-suave: #b9b3a8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--noche);
+    color: var(--texto);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    min-height: 100vh;
+    padding: 32px 10px 60px;
+  }
+  header{
+    text-align:center;
+    margin-bottom: 40px;
+  }
+  header h1{
+    font-size: clamp(28px, 6vw, 44px);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--texto);
+  }
+  header h1 span{
+    color: var(--oro);
+  }
+  header p{
+    margin-top: 8px;
+    font-family: 'Trebuchet MS', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 13px;
+    color: var(--coral);
+  }
+  .linea{
+    width: 60px;
+    height: 2px;
+    background: var(--oro);
+    margin: 18px auto 0;
+  }
+  main{
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .banner-slot{
+    width: 100%;
+    height: 100px;
+    margin: 0 auto;
+    background: var(--noche-2);
+    border: 1px dashed rgba(224,169,64,0.4);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    padding: 0 8px;
+    overflow: hidden;
+  }
+  .banner-slot img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  .banner-slot .num{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--oro);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .banner-slot .medida{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    color: var(--texto-suave);
+    white-space: nowrap;
+  }
+  footer{
+    text-align:center;
+    margin-top: 48px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    color: var(--texto-suave);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>¿Dónde se baila <span>hoy</span>?</h1>
+    <p>En Vallarta</p>
+    <div class="linea"></div>
+  </header>
+
+  <main>
+    <!-- Banner 1 -->
+    <div class="banner-slot" id="banner-1">
+      <img src="banner1.png" alt="Sandra Haro, Licenciada en Marketing">
+    </div>
+
+    <!-- Banner 2 -->
+    <div class="banner-slot" id="banner-2">
+      <span class="num">Banner 2</span>
+      <span class="medida">Alto 100 px</span>
+    </div>
+
+    <!-- Banner 3 -->
+    <div class="banner-slot" id="banner-3">
+      <span class="num">Banner 3</span>
+      <span class="medida">Alto 100 px</span>
+    </div>
+
+    <!-- Banner 4 -->
+    <div class="banner-slot" id="banner-4">
+      <span class="num">Banner 4</span>
+      <span class="medida">Alto 100 px</span>
+    </div>
+
+    <!-- Banner 5 -->
+    <div class="banner-slot" id="banner-5">
+      <span class="num">Banner 5</span>
+      <span class="medida">Alto 100 px</span>
+    </div>
+  </main>
+
+  <footer>
+    Infinity AI Lab · Eventos de baile en Puerto Vallarta
+  </footer>
+
+</body>
+</html>

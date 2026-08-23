@@ -57,7 +57,7 @@
   }
   .banner-slot{
     width: 100%;
-    height: 130px;
+    height: 115px;
     margin: 0 auto;
     background: var(--noche-2);
     border: 1px dashed rgba(224,169,64,0.4);
@@ -68,8 +68,15 @@
     justify-content: center;
     gap: 8px;
     text-align: center;
-    padding: 0 0px;
+    padding: 0 8px;
     overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .banner-slot:hover, .banner-slot:focus-visible{
+    transform: scale(1.01);
+    border-color: rgba(224,169,64,0.8);
+    outline: none;
   }
   .banner-slot img{
     width: 100%;
@@ -99,6 +106,110 @@
     color: var(--texto-suave);
     letter-spacing: 1px;
   }
+
+  /* ===== Ficha de información (modal) ===== */
+  .overlay{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .overlay.activo{
+    display: flex;
+  }
+  .ficha{
+    background: var(--noche-2);
+    border: 1px solid rgba(224,169,64,0.4);
+    border-radius: 10px;
+    max-width: 360px;
+    width: 100%;
+    padding: 28px 24px 24px;
+    position: relative;
+    text-align: center;
+    animation: aparecer 0.18s ease;
+  }
+  @keyframes aparecer{
+    from{ opacity: 0; transform: translateY(6px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+  .ficha-cerrar{
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: var(--texto-suave);
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .ficha-cerrar:hover{
+    color: var(--oro);
+  }
+  .ficha-logo{
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: var(--noche);
+    border: 2px solid var(--oro);
+    margin: 0 auto 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ficha-logo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ficha-logo span{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 9px;
+    color: var(--texto-suave);
+    letter-spacing: 1px;
+  }
+  .ficha-nombre{
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--texto);
+    margin-bottom: 2px;
+  }
+  .ficha-tipo{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 16px;
+  }
+  .ficha-datos{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+  .ficha-fila{
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .ficha-fila .etiqueta{
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--oro);
+    min-width: 60px;
+  }
+  .ficha-fila .valor{
+    font-size: 14px;
+    color: var(--texto);
+  }
 </style>
 </head>
 <body>
@@ -111,36 +222,144 @@
 
   <main>
     <!-- Banner 1 -->
-    <div class="banner-slot" id="banner-1">
-      <img src="Mash.png" alt="Pato Borracho, Licenciada en Marketing">
+    <div class="banner-slot" id="banner-1" onclick="abrirFicha('1')" tabindex="0">
+      <img src="Mash.png" alt="Masha">
     </div>
 
     <!-- Banner 2 -->
-    <div class="banner-slot" id="banner-2">
-      <img src="Patobo.png" alt="Pato, Licenciada en Marketing">
+    <div class="banner-slot" id="banner-2" onclick="abrirFicha('2')" tabindex="0">
+      <span class="num">Banner 2</span>
+      <span class="medida">Alto 115 px</span>
     </div>
 
     <!-- Banner 3 -->
-    <div class="banner-slot" id="banner-3">
-      <img src="Masha.png" alt="Pato, Licenciada en Marketing">
+    <div class="banner-slot" id="banner-3" onclick="abrirFicha('3')" tabindex="0">
+      <span class="num">Banner 3</span>
+      <span class="medida">Alto 115 px</span>
     </div>
 
     <!-- Banner 4 -->
-    <div class="banner-slot" id="banner-4">
+    <div class="banner-slot" id="banner-4" onclick="abrirFicha('4')" tabindex="0">
       <span class="num">Banner 4</span>
-      <span class="medida">Alto 100 px</span>
+      <span class="medida">Alto 115 px</span>
     </div>
 
     <!-- Banner 5 -->
-    <div class="banner-slot" id="banner-5">
+    <div class="banner-slot" id="banner-5" onclick="abrirFicha('5')" tabindex="0">
       <span class="num">Banner 5</span>
-      <span class="medida">Alto 100 px</span>
+      <span class="medida">Alto 115 px</span>
     </div>
   </main>
 
   <footer>
     Infinity AI Lab · Eventos de baile en Puerto Vallarta
   </footer>
+
+  <!-- ===== Ficha de información (se llena con JS) ===== -->
+  <div class="overlay" id="overlay" onclick="cerrarFichaFuera(event)">
+    <div class="ficha">
+      <button class="ficha-cerrar" onclick="cerrarFicha()">&times;</button>
+      <div class="ficha-logo" id="ficha-logo">
+        <span>LOGO</span>
+      </div>
+      <div class="ficha-nombre" id="ficha-nombre">Nombre del lugar</div>
+      <div class="ficha-tipo" id="ficha-tipo">DJ / Banda en vivo</div>
+      <div class="ficha-datos">
+        <div class="ficha-fila">
+          <span class="etiqueta">Días</span>
+          <span class="valor" id="ficha-dias">—</span>
+        </div>
+        <div class="ficha-fila">
+          <span class="etiqueta">Hora</span>
+          <span class="valor" id="ficha-hora">—</span>
+        </div>
+        <div class="ficha-fila">
+          <span class="etiqueta">Lugar</span>
+          <span class="valor" id="ficha-lugar">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    // DATOS DE CADA EVENTO — edítalos aquí manualmente
+    // Cada clave (1,2,3,4,5) corresponde al banner con ese número.
+    // "logo": ruta de la imagen circular (déjalo en "" si no tienes logo aún)
+    // ============================================
+    const EVENTOS = {
+      "1": {
+        logo: "",
+        nombre: "El Jardin de Masha",
+        tipo: "Restaurante",
+        dias: "Jueves y Sabados",
+        hora: "8:30 P.M",
+        lugar: "Mezcalez"
+      },
+      "2": {
+        logo: "",
+        nombre: "Nombre del lugar",
+        tipo: "DJ",
+        dias: "Vie y Sáb",
+        hora: "9:00 pm",
+        lugar: "Puerto Vallarta"
+      },
+      "3": {
+        logo: "",
+        nombre: "Nombre del lugar",
+        tipo: "Banda en vivo",
+        dias: "Jue",
+        hora: "8:00 pm",
+        lugar: "Puerto Vallarta"
+      },
+      "4": {
+        logo: "",
+        nombre: "Nombre del lugar",
+        tipo: "DJ",
+        dias: "Sáb",
+        hora: "10:00 pm",
+        lugar: "Puerto Vallarta"
+      },
+      "5": {
+        logo: "",
+        nombre: "Nombre del lugar",
+        tipo: "Banda en vivo",
+        dias: "Dom",
+        hora: "6:00 pm",
+        lugar: "Puerto Vallarta"
+      }
+    };
+
+    function abrirFicha(id){
+      const datos = EVENTOS[id];
+      if(!datos) return;
+
+      document.getElementById('ficha-nombre').textContent = datos.nombre;
+      document.getElementById('ficha-tipo').textContent = datos.tipo;
+      document.getElementById('ficha-dias').textContent = datos.dias;
+      document.getElementById('ficha-hora').textContent = datos.hora;
+      document.getElementById('ficha-lugar').textContent = datos.lugar;
+
+      const logoBox = document.getElementById('ficha-logo');
+      if(datos.logo){
+        logoBox.innerHTML = `<img src="${datos.logo}" alt="Logo de ${datos.nombre}">`;
+      } else {
+        logoBox.innerHTML = `<span>LOGO</span>`;
+      }
+
+      document.getElementById('overlay').classList.add('activo');
+    }
+
+    function cerrarFicha(){
+      document.getElementById('overlay').classList.remove('activo');
+    }
+
+    function cerrarFichaFuera(evento){
+      if(evento.target.id === 'overlay'){
+        cerrarFicha();
+      }
+    }
+  </script>
 
 </body>
 </html>

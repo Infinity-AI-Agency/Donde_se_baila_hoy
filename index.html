@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>¿Dónde se baila hoy? — En Vallarta</title>
+
+<!-- Vista previa al compartir (WhatsApp, Facebook, iMessage, etc.) -->
+<meta property="og:title" content="¿Dónde se baila hoy? — En Vallarta">
+<meta property="og:description" content="Eventos, DJs y bandas en vivo en Puerto Vallarta. Entérate dónde bailar hoy.">
+<meta property="og:image" content="https://REEMPLAZA-CON-TU-DOMINIO/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://REEMPLAZA-CON-TU-DOMINIO/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="¿Dónde se baila hoy? — En Vallarta">
+<meta name="twitter:description" content="Eventos, DJs y bandas en vivo en Puerto Vallarta.">
+<meta name="twitter:image" content="https://REEMPLAZA-CON-TU-DOMINIO/og-image.png">
 <style>
   :root{
     --noche: #12151c;
@@ -53,7 +64,29 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 32px;
+  }
+  .evento-item{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .evento-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+  .evento-nombre{
+    font-size: 14px;
+    color: var(--texto);
+    font-weight: bold;
+  }
+  .evento-estrellas{
+    font-size: 13px;
+    color: var(--oro);
+    letter-spacing: 1px;
   }
   .banner-slot{
     width: 100%;
@@ -68,7 +101,7 @@
     justify-content: center;
     gap: 8px;
     text-align: center;
-    padding: 0 0px;
+    padding: 0 8px;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.15s ease, border-color 0.15s ease;
@@ -210,6 +243,92 @@
     font-size: 14px;
     color: var(--texto);
   }
+
+  /* ===== Sección Músicos / DJs disponibles ===== */
+  .musicos-section{
+    max-width: 600px;
+    margin: 56px auto 0;
+    padding: 0 4px;
+  }
+  .musicos-titulo{
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .musicos-titulo h2{
+    font-size: 22px;
+    color: var(--texto);
+    font-weight: 700;
+  }
+  .musicos-titulo p{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-top: 4px;
+  }
+  .musicos-lista{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 22px;
+  }
+  .musico-card{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--noche-2);
+    border: 1px solid rgba(224,169,64,0.25);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .musico-foto{
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 50%;
+    background: var(--noche);
+    border: 2px solid var(--oro);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .musico-foto img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .musico-foto span{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 8px;
+    color: var(--texto-suave);
+  }
+  .musico-datos{
+    flex: 1;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+  .musico-nombre{
+    font-size: 15px;
+    color: var(--texto);
+    font-weight: bold;
+  }
+  .musico-genero{
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin-top: 2px;
+  }
+  .musico-contacto{
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--noche);
+    background: var(--oro);
+    padding: 7px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+  }
 </style>
 </head>
 <body>
@@ -222,36 +341,73 @@
 
   <main>
     <!-- Banner 1 -->
-    <div class="banner-slot" id="banner-1" onclick="abrirFicha('1')" tabindex="0">
-      <img src="Mash.png" alt="Masha">
+    <div class="evento-item">
+      <div class="banner-slot" id="banner-1" onclick="abrirFicha('1')" tabindex="0">
+        <img src="banner1.png" alt="Sandra Haro, Licenciada en Marketing">
+      </div>
+      <div class="evento-info">
+        <span class="evento-nombre" id="nombre-1"></span>
+        <span class="evento-estrellas" id="estrellas-1"></span>
+      </div>
     </div>
 
     <!-- Banner 2 -->
-    <div class="banner-slot" id="banner-2" onclick="abrirFicha('2')" tabindex="0">
-       <img src="Patobo.png" alt="Pato">
+    <div class="evento-item">
+      <div class="banner-slot" id="banner-2" onclick="abrirFicha('2')" tabindex="0">
+        <span class="num">Banner 2</span>
+        <span class="medida">Alto 115 px</span>
+      </div>
+      <div class="evento-info">
+        <span class="evento-nombre" id="nombre-2"></span>
+        <span class="evento-estrellas" id="estrellas-2"></span>
+      </div>
     </div>
 
     <!-- Banner 3 -->
-    <div class="banner-slot" id="banner-3" onclick="abrirFicha('3')" tabindex="0">
-      <img src="Mestizo.png" alt="Pato">
+    <div class="evento-item">
+      <div class="banner-slot" id="banner-3" onclick="abrirFicha('3')" tabindex="0">
+        <span class="num">Banner 3</span>
+        <span class="medida">Alto 115 px</span>
+      </div>
+      <div class="evento-info">
+        <span class="evento-nombre" id="nombre-3"></span>
+        <span class="evento-estrellas" id="estrellas-3"></span>
+      </div>
     </div>
 
     <!-- Banner 4 -->
-    <div class="banner-slot" id="banner-4" onclick="abrirFicha('4')" tabindex="0">
-      <img src="Bistro.png" alt="zapatillo">
+    <div class="evento-item">
+      <div class="banner-slot" id="banner-4" onclick="abrirFicha('4')" tabindex="0">
+        <span class="num">Banner 4</span>
+        <span class="medida">Alto 115 px</span>
+      </div>
+      <div class="evento-info">
+        <span class="evento-nombre" id="nombre-4"></span>
+        <span class="evento-estrellas" id="estrellas-4"></span>
+      </div>
     </div>
 
     <!-- Banner 5 -->
-    <div class="banner-slot" id="banner-5" onclick="abrirFicha('5')" tabindex="0">
-      <img src="Zapatillo.png" alt="zapatillo">
+    <div class="evento-item">
+      <div class="banner-slot" id="banner-5" onclick="abrirFicha('5')" tabindex="0">
+        <span class="num">Banner 5</span>
+        <span class="medida">Alto 115 px</span>
+      </div>
+      <div class="evento-info">
+        <span class="evento-nombre" id="nombre-5"></span>
+        <span class="evento-estrellas" id="estrellas-5"></span>
+      </div>
     </div>
+  </main>
 
-    <!-- Banner 6 -->
-    <div class="banner-slot" id="banner-6" onclick="abrirFicha('6')" tabindex="0">
-      <img src="Zapatillo.png" alt="zapatillo">
+  <!-- ===== Sección: Músicos y DJs disponibles para contratar ===== -->
+  <section class="musicos-section">
+    <div class="musicos-titulo">
+      <h2>Músicos y DJs disponibles</h2>
+      <p>Contrátalos para tu evento</p>
     </div>
-  </main>
-  </main>
+    <div class="musicos-lista" id="musicos-lista"></div>
+  </section>
 
   <footer>
     Infinity AI Lab · Eventos de baile en Puerto Vallarta
@@ -288,58 +444,119 @@
     // DATOS DE CADA EVENTO — edítalos aquí manualmente
     // Cada clave (1,2,3,4,5) corresponde al banner con ese número.
     // "logo": ruta de la imagen circular (déjalo en "" si no tienes logo aún)
+    // "estrellas": 4 o 5 — puntuación que se muestra bajo el banner
     // ============================================
     const EVENTOS = {
       "1": {
-        logo: "Logom.png",
-        nombre: "El Jardin de Masha",
-        tipo: "Musica en vivo",
-        dias: "Jueves y Sabados",
-        hora: "8:30 P.M",
-        lugar: "Mezcalez"
+        logo: "",
+        nombre: "Sandra Haro",
+        tipo: "Clases de Marketing",
+        dias: "Por definir",
+        hora: "Por definir",
+        lugar: "Por definir",
+        estrellas: 5
       },
       "2": {
-        logo: "Logop.png",
-        nombre: "Drunken Duck",
-        tipo: "Banda en vivo",
-        dias: "Sabados",
+        logo: "",
+        nombre: "Nombre del lugar",
+        tipo: "DJ",
+        dias: "Vie y Sáb",
         hora: "9:00 pm",
-        lugar: "Nuevo Nayarit"
+        lugar: "Puerto Vallarta",
+        estrellas: 4
       },
       "3": {
-        logo: "Logomestizo.jpeg",
-        nombre: "Mestizo Bar",
+        logo: "",
+        nombre: "Nombre del lugar",
         tipo: "Banda en vivo",
-        dias: "Jue, Vier, Sab",
-        hora: "10pm a 5am",
-        lugar: "Puerto Vallarta"
+        dias: "Jue",
+        hora: "8:00 pm",
+        lugar: "Puerto Vallarta",
+        estrellas: 5
       },
       "4": {
-        logo: "Logobis.jpeg",
-        nombre: "Bistro Bar",
-        tipo: "DJ y Musica en vivo",
+        logo: "",
+        nombre: "Nombre del lugar",
+        tipo: "DJ",
         dias: "Sáb",
-        hora: "9:00 pm",
-        lugar: "Puerto Vallarta Centro"
+        hora: "10:00 pm",
+        lugar: "Puerto Vallarta",
+        estrellas: 4
       },
       "5": {
-        logo: "Logoz.jpeg",
-        nombre: "Zapatillo",
-        tipo: "DJ",
+        logo: "",
+        nombre: "Nombre del lugar",
+        tipo: "Banda en vivo",
         dias: "Dom",
-        hora: "7:00 pm",
-        lugar: "Puerto Vallarta"
-      }
-      
-      "6": {
-        logo: "Logoz.jpeg",
-        nombre: "Zapatillo",
-        tipo: "DJ",
-        dias: "Dom",
-        hora: "7:00 pm",
-        lugar: "Puerto Vallarta"
+        hora: "6:00 pm",
+        lugar: "Puerto Vallarta",
+        estrellas: 5
       }
     };
+
+    // ============================================
+    // MÚSICOS Y DJs DISPONIBLES — edítalos aquí manualmente
+    // Agrega, quita o edita tantos como quieras copiando un bloque.
+    // "whatsapp": número con código de país, sin espacios ni signos (ej. 523221234567)
+    // ============================================
+    const MUSICOS = [
+      {
+        foto: "",
+        nombre: "Nombre del músico/DJ",
+        genero: "Salsa · Bachata",
+        whatsapp: "523221234567"
+      },
+      {
+        foto: "",
+        nombre: "Nombre del músico/DJ",
+        genero: "Reggaetón · Pop",
+        whatsapp: "523221234567"
+      },
+      {
+        foto: "",
+        nombre: "Nombre del músico/DJ",
+        genero: "Banda en vivo",
+        whatsapp: "523221234567"
+      }
+    ];
+
+    function renderEstrellas(n){
+      const llenas = "★".repeat(n);
+      const vacias = "☆".repeat(5 - n);
+      return llenas + vacias;
+    }
+
+    function pintarInfoEventos(){
+      Object.keys(EVENTOS).forEach(function(id){
+        const datos = EVENTOS[id];
+        const nombreEl = document.getElementById('nombre-' + id);
+        const estrellasEl = document.getElementById('estrellas-' + id);
+        if(nombreEl) nombreEl.textContent = datos.nombre;
+        if(estrellasEl) estrellasEl.textContent = renderEstrellas(datos.estrellas || 5);
+      });
+    }
+
+    function pintarMusicos(){
+      const lista = document.getElementById('musicos-lista');
+      lista.innerHTML = MUSICOS.map(function(m){
+        const fotoHTML = m.foto
+          ? `<img src="${m.foto}" alt="${m.nombre}">`
+          : `<span>FOTO</span>`;
+        return `
+          <div class="musico-card">
+            <div class="musico-foto">${fotoHTML}</div>
+            <div class="musico-datos">
+              <div class="musico-nombre">${m.nombre}</div>
+              <div class="musico-genero">${m.genero}</div>
+            </div>
+            <a class="musico-contacto" href="https://wa.me/${m.whatsapp}" target="_blank">Contactar</a>
+          </div>
+        `;
+      }).join('');
+    }
+
+    pintarInfoEventos();
+    pintarMusicos();
 
     function abrirFicha(id){
       const datos = EVENTOS[id];
